@@ -8,4 +8,23 @@ export const DJANGO_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
     collapsed: false,
     items: [],
   },
+
+  {
+    text: "相关目录",
+    collapsed: true,
+    items: [
+      {
+        text: "Django 基础 →",
+        link: `/backend/django/`,
+      },
+      {
+        text: "Python 基础 →",
+        link: `/backend/python/`,
+      },
+      {
+        text: "后端相关 →",
+        link: `/backend/`,
+      },
+    ],
+  },
 ];

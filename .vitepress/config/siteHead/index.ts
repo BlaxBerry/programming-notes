@@ -6,15 +6,25 @@ export const siteHead: HeadConfig[] = [
     "link",
     {
       rel: "icon",
-      href: "/blaxberry-programming-notes/favicon.ico",
+      href: "/programming-notes/favicon.ico",
     },
   ],
 
   // Google Font
-  ["link", { rel: "preconnect", href: "https://fonts.googleapis.com" }],
   [
     "link",
-    { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
+    {
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com",
+    },
+  ],
+  [
+    "link",
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossorigin: "",
+    },
   ],
   [
     "link",

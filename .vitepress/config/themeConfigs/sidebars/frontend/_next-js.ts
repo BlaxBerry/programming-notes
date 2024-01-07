@@ -8,4 +8,23 @@ export const NEXT_JS_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
     collapsed: false,
     items: [],
   },
+
+  {
+    text: "相关目录",
+    collapsed: true,
+    items: [
+      {
+        text: "Next.js 基础 →",
+        link: `/frontend/next-js/`,
+      },
+      {
+        text: "React 基础 →",
+        link: `/frontend/react/`,
+      },
+      {
+        text: "前端相关 →",
+        link: `/frontend/`,
+      },
+    ],
+  },
 ];

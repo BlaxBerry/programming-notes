@@ -1,3 +1,12 @@
 {
-  "cSpell.words": ["BlaxBerry", "Deno", "Nuxt", "vitepress", "webp"]
+  "cSpell.words": [
+    "BlaxBerry",
+    "Deno",
+    "keyof",
+    "Nuxt",
+    "struct",
+    "typeof",
+    "vitepress",
+    "webp"
+  ]
 }

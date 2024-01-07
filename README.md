@@ -4,22 +4,25 @@ Personal Study Notes ( Markdown ) Blog Site Based on Vitepress.
 
 ## Tech Stacks
 
-- [vitepress]()
-- [typescript]()
-- [markdown]()
+- [Vitepress]()
+- [TypeScript]()
+- [CSS]()
+- [Markdown]()
 
 ## Project Structure
 
 ```shell
-|- .vitepress   # vitepress's configs
-    |- config
-    |- theme
+|- .vitepress
+    |- dist
+    |- config   # vitepress's config
+    |- theme    # vitepress's theme style
     |- ...
-|- contents         # pages ( markdown documents )
+|- contents     # pages ( markdown documents )
     |- ...
-    |- index.md
-|- public       # public assets
+    |- index.md # home page
+|- public
     |- statics
+    |- favicon.ico
     |- ...
 |- ...
 ```

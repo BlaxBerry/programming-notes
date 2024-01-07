@@ -7,12 +7,4 @@ next: false
 
 ![](/static/skill-images/react.webp)
 
-::: code-group
-
-```tsx [x]
-function Component() {
-  return <></>;
-}
-```
-
-:::
+> 本文为函数式组件 ( Functional Component )

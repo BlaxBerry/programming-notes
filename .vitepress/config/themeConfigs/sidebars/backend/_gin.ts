@@ -8,4 +8,23 @@ export const GIN_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
     collapsed: false,
     items: [],
   },
+
+  {
+    text: "相关目录",
+    collapsed: true,
+    items: [
+      {
+        text: "Go 基础 →",
+        link: `/backend/go/`,
+      },
+      {
+        text: "Gin 基础 →",
+        link: `/backend/gin/`,
+      },
+      {
+        text: "后端相关 →",
+        link: `/backend/`,
+      },
+    ],
+  },
 ];

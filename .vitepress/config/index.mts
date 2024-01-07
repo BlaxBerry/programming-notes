@@ -4,20 +4,24 @@ import { defaultThemeSidebars } from "./themeConfigs/sidebars";
 import { siteHead } from "./siteHead";
 
 export default defineConfig({
-  base: "/blaxberry-programming-notes/", // 站点部署 https://blaxberry.github.io/blaxberry-programming-notes/
+  base: "/programming-notes/", // 站点部署 https://blaxberry.github.io/programming-notes/
   srcDir: "./contents", // 项目根目录下的 contents 目录
   vite: {
     publicDir: "../public", // 项目根目录下的 public 目录
   },
   markdown: {
     cache: false, // 开发期间禁用 markdown 缓存
+    theme: {
+      light: "github-light",
+      dark: "github-dark-dimmed",
+    },
   },
   cleanUrls: true,
   ignoreDeadLinks: true,
   appearance: "dark",
 
   // 网站元数据
-  title: "Programming Notes",
+  title: "编程笔记",
   titleTemplate: ":title | BlaxBerry",
   description: "BlaxBerry's Programming Study Notes",
   head: siteHead,
@@ -39,7 +43,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: "github",
-        link: "https://github.com/BlaxBerry/blaxberry-programming-notes",
+        link: "https://github.com/BlaxBerry/programming-notes",
         ariaLabel: "Github",
       },
       {
@@ -76,7 +80,7 @@ export default defineConfig({
     // 404 页面内容
     notFound: {
       title: "Not Found",
-      quote: "该地址对应的文档不存在，请检查访问地址或者返回首页查看更多文档",
+      quote: "访问地址对应的文档不存在，请检查访问地址或者返回首页查看更多文档",
       linkText: "返回首页",
     },
   },

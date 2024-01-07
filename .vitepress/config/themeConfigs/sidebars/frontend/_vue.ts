@@ -8,4 +8,23 @@ export const VUE_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
     collapsed: false,
     items: [],
   },
+
+  {
+    text: "相关目录",
+    collapsed: true,
+    items: [
+      {
+        text: "Vue 基础 →",
+        link: `/frontend/vue/`,
+      },
+      {
+        text: "Nuxt.js →",
+        link: `/frontend/nuxt-js/`,
+      },
+      {
+        text: "前端相关 →",
+        link: `/frontend/`,
+      },
+    ],
+  },
 ];

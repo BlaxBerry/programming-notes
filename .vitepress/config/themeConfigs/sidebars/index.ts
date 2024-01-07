@@ -15,9 +15,7 @@ import { GO_ROOT, GO_SIDEBAR } from "./backend/_go";
 import { GIN_ROOT, GIN_SIDEBAR } from "./backend/_gin";
 
 // others
-import { GIT_ROOT, GIT_SIDEBAR } from "./others/_git";
-import { ASDF_ROOT, ASDF_SIDEBAR } from "./others/_asdf";
-import { CURL_ROOT, CURL_SIDEBAR } from "./others/_curl";
+import { GIT_ROOT, GIT_SIDEBAR } from "./others/tools/_git";
 
 export const defaultThemeSidebars: DefaultTheme.Sidebar = {
   // Javascript
@@ -44,8 +42,4 @@ export const defaultThemeSidebars: DefaultTheme.Sidebar = {
 
   // Git
   [GIT_ROOT]: GIT_SIDEBAR,
-  // asdf
-  [ASDF_ROOT]: ASDF_SIDEBAR,
-  // CURL
-  [CURL_ROOT]: CURL_SIDEBAR,
 };
