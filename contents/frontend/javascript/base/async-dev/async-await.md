@@ -1,4 +1,4 @@
-# async / await
+# JS async / await
 
 async / await 可以解决 Promise 链式调用时的回调嵌套
 

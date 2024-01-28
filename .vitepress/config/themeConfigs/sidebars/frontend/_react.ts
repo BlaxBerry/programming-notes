@@ -94,12 +94,12 @@ export const REACT_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
     collapsed: true,
     items: [
       {
-        text: "Next.js 基础 →",
-        link: `/frontend/next-js/`,
-      },
-      {
         text: "React 基础 →",
         link: `/frontend/react/`,
+      },
+      {
+        text: "Next.js 基础 →",
+        link: `/frontend/next-js/`,
       },
       {
         text: "前端相关 →",

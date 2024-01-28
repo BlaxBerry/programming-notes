@@ -9,7 +9,7 @@ next: false
 
 ## 环境构建
 
-JavaScript 有两种运行环境
+JavaScript 有两种运行环境：
 
 - 浏览器
 - Node.js

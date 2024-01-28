@@ -1,6 +1,6 @@
 # venv
 
-Python 标准库自带的虚拟环境工具，开箱即用无需另外下载
+Python 自带的虚拟环境工具，安装 Python 后开箱即用
 
 ## 使用步骤
 
@@ -108,17 +108,17 @@ setuptools 57.4.0
 ```
 
 ```shell [虚拟环境目录]
-|- 虚拟环境          # [!code focus]
-    |- bin          # [!code focus]
-      |- activate   # 进入虚拟环境的脚本
-      |- ...
-    |- include      # [!code focus]
-    |- lib          # [!code focus]
-      |- python版本
-        |- site-package
-          |- 下载在虚拟环境中的包
-          |- ...
-    |- pyvenv.cfg   # [!code focus]
+[虚拟环境]         # [!code focus]
+  |- bin          # [!code focus]
+    |- activate   # 进入虚拟环境的脚本
+    |- ...
+  |- include      # [!code focus]
+  |- lib          # [!code focus]
+    |- python版本
+      |- site-package
+        |- 下载在虚拟环境中的包
+        |- ...
+  |- pyvenv.cfg   # [!code focus]
 ```
 
 :::

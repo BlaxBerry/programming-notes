@@ -1,4 +1,4 @@
-# Promise
+# JS Promise
 
 Promise 是 JavaScript ES6 中解决异步编程的一种方案
 

@@ -1,4 +1,4 @@
-# 数据的类型分类、判断、转换
+# GO 类型分类、判断、转换
 
 ## 类型分类
 
@@ -31,9 +31,47 @@
 
 > Value Types
 
-值类型数据包含：[基本类型数据](./primitive-data-types.md)以及[复合类型数据](./composite-data-types.md)中的数组、结构体
+值类型数据包含：[基本类型数据](./primitive-data-types.md)以及[复合类型数据](./composite-data-types.md)中的**数组**、**结构体**
 
 值类型的变量中存储的是该数据值的副本
+
+::: details 例子：验证值类型数据整体赋值给新变量时，新旧变量内存地址不同
+
+因为新旧变量内存指向不同，修改互不影响
+
+::: code-group
+
+```go [结构体]
+package main
+
+import "fmt"
+
+type Person struct {				// [!code focus]
+	Name string						// [!code focus]
+	Age  int						// [!code focus]
+}									// [!code focus]
+
+func main() {
+	a := Person{Name: "A", Age: 28}	// [!code focus]
+	b := a							// [!code focus]
+
+	// 指针指向不同内存地址，互不影响
+	fmt.Printf("%p\n", &a)
+	fmt.Printf("%p\n", &b)
+
+	b.Name = "B"					// [!code focus]
+	b.Age = 16						// [!code focus]
+
+	fmt.Println(a, b)
+}
+
+
+// 0x14000114018
+// 0x14000114030
+// {"A" 28} {"B" 16}
+```
+
+:::
 
 值类型的变量自身进行修改时：
 
@@ -50,9 +88,11 @@
 
 :::
 
-::: details 例子：验证同一作用域下的修改对原本数据的影响
+::: details 例子：验证同一作用域下直接修改值类型数据
 
-```go
+::: code-group
+
+```go [字符串]
 package main
 
 import "fmt"
@@ -77,9 +117,11 @@ func main() {
 
 :::
 
-::: details 例子：验证不同作用域 ( 函数内 ) 修改接收的数组类型数据的值不影响原数据的值
+::: details 例子：验证不同作用域 ( 函数内 ) 直接修改值类型数据
 
-```go
+::: code-group
+
+```go [数组]
 package main
 
 import "fmt"
@@ -103,11 +145,7 @@ func doSomething(arr [3]string) {           // [!code focus]
 // [a b c]
 ```
 
-:::
-
-::: details 例子：验证不同作用域 ( 函数内 ) 修改接收的结构体类型数据的值不影响原数据的值
-
-```go
+```go [结构体]
 package main
 
 import "fmt"
@@ -184,6 +222,62 @@ func doSomething(arr *[3]string) {					// [!code focus]
 
 引用类型的变量中存储的是该数据的引用 ( 指针的副本 )
 
+::: details 例子：验证引用类型数据整体赋值给新变量时，新旧变量内存地址相同
+
+因为新旧变量内存指向相同，其中任意一个修改都会影响另一个
+
+::: code-group
+
+```go [切片]
+package main
+
+import "fmt"
+
+func main() {
+	s1 := make([]string, 2)	// [!code focus]
+	s2 := s1				// [!code focus]
+
+	// 指针指向相同内存地址
+	fmt.Printf("%p \n", s1)
+	fmt.Printf("%p \n", s2)
+
+	s2[0] = "x"				// [!code focus]
+	s2[1] = "y"				// [!code focus]
+	fmt.Println(s1, s2)
+}
+
+
+// 0x14000110210
+// 0x14000110210
+// ["x" "y"] ["x" "y"]
+```
+
+```go [映射]
+package main
+
+import "fmt"
+
+func main() {
+	m1 := make(map[string]string, 2)	// [!code focus]
+	m2 := m1							// [!code focus]
+
+	// 指针指向相同内存地址
+	fmt.Printf("%p \n", m1)
+	fmt.Printf("%p \n", m2)
+
+	m2["a"] = "AA"						// [!code focus]
+	m2["b"] = "BB"						// [!code focus]
+	fmt.Println(m1, m2)
+}
+
+
+// 0x14000106180
+// 0x14000106180
+// map[a:AA b:BB] map[a:AA b:BB]
+```
+
+:::
+
 引用类型的变量自身进行修改时：
 
 - 同一作用域下：对其修改会影响原数据，因为底层数据的引用相同
@@ -191,9 +285,11 @@ func doSomething(arr *[3]string) {					// [!code focus]
   - 修改其内部成员数据会影响原始数据
   - 但修改整个引用类型数据本身不会影响原始数据，相当于底层数据重新分配与原本数据并无关联了
 
-::: details 例子：验证同一作用域下的修改对原本数据的影响
+::: details 例子：验证同一作用域下直接修改引用类型数据
 
-```go
+::: code-group
+
+```go [切片]
 package main
 
 import "fmt"
@@ -224,9 +320,11 @@ func main() {
 
 :::
 
-::: details 例子：验证不同作用域 ( 函数内 ) 修改切片类型数据对原本数据的影响
+::: details 例子：验证不同作用域 ( 函数内 ) 直接修改引用类型数据
 
-```go
+::: code-group
+
+```go [切片]
 package main
 
 import "fmt"
@@ -283,7 +381,7 @@ func changeEntire(slice []string) {                 // [!code focus]
 type 类型别名 = 某个类型
 ```
 
-比如`byte`、`rune`就是整数类型中`uint32`、`int32`的别名
+> 如下：Go 内置的`byte`、`rune`类型就是整数型中`uint32`、`int32`类型的别名
 
 ```go
 type byte = uint8
@@ -296,7 +394,34 @@ type rune = int32
 type 自定义类型 某个类型
 ```
 
+自定义类型被视为一个新类型
+
+::: details 例子：验证自定义与原本类型数据直接赋值会报错类型不同
+
+```go
+package main
+
+type MyInt int	// [!code focus]
+
+func main() {
+	var a int	// [!code focus]
+	var b MyInt	// [!code focus]
+
+	a = b		// [!code focus] // [!code error]
+}
+```
+
+:::
+
 ## 类型判断
+
+有三种获取类型的方式：
+
+- 借助包`reflect`
+- 借助包`fmt`中的格式化方法
+- 利用接口的类型断言
+
+---
 
 ### reflect.TypeOf()
 
@@ -318,6 +443,16 @@ import "reflect"
 
 [更多详见](../built-in-pkgs/fmt.md#fmt-sprintf)
 
+---
+
+### 类型断言
+
+```go
+变量值, 布尔值 := 接口类型变量.(类型)
+```
+
+[更多详见](../oop/interface.md#类型断言)
+
 ## 类型转换
 
 ```go
@@ -332,3 +467,48 @@ Go 不存在隐式数据类型转换，所有的类型转换必须显式声明
 | `float64()` | 转为浮点`float64`类型    |
 | `string()`  | 转为字符串类型           |
 | `byte()`    | 将字符串转为字节数组类型 |
+
+结构体类型直接类型转换时，字段必须完全一致，否则报错
+
+```go
+var 结构体A的实例 结构体A
+var 结构体B的实例 结构体B
+
+结构体B的实例 = 结构体A的实例	// [!code error] // 报错
+结构体B的实例 = 结构体B(结构体A的实例)
+```
+
+::: details 例子：验证字段一致的结构体间的类型转换
+
+```go
+package main
+
+import "fmt"
+
+type person struct {			// [!code focus]
+	Name string					// [!code focus]
+}								// [!code focus]
+
+type student struct {			// [!code focus]
+	Name string					// [!code focus]
+}								// [!code focus]
+
+func main() {
+	p := person{Name: "xxx"}	// [!code focus]
+	s := student{Name: "yyy"}	// [!code focus]
+
+	p = s	// [!code error] // 报错
+	p = person(s)				// [!code focus]
+	s = person(p)				// [!code focus]
+	fmt.Println(p, s)
+}
+
+
+// {yyy} {yyy}
+```
+
+:::
+
+## 泛型
+
+https://www.bilibili.com/video/BV1KG4y1f79A/?vd_source=8960252a3845b76b699282b11f36ab5c

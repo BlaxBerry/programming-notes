@@ -11,9 +11,29 @@ asdf 是个多语言・运行时的版本管理工具
 
 可以同时管理多个语言的版本，能替代以往需要分别安装不同版本管理工具的做法
 
+[更多详见](https://asdf-vm.com/guide/getting-started.html#_2-download-asdf)
+
 ## 下载安装
 
-[更多详见](https://asdf-vm.com/guide/getting-started.html#_2-download-asdf)
+::: code-group
+
+```shell [下载 & 配置]
+# 通过 Homebrew 下载
+brew install asdf
+
+# 追加脚本到 ~/.zshrc 文件
+echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
+```
+
+```zsh [.zshrc 文件]
+# Homebrew
+export PATH="$PATH:/opt/homebrew/bin/"
+
+# asdf
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+```
+
+:::
 
 ## 使用步骤
 
@@ -78,7 +98,9 @@ asdf install [语言・运行时] latest
 
 :::
 
-> 如下：
+::: details 例子：验证下载语言的插件后下载指定版本
+
+> 如下：下载了 Node.js、Python、Go
 
 ```shell
 % asdf plugin add nodejs
@@ -90,9 +112,27 @@ asdf install [语言・运行时] latest
 % asdf install golang 1.18
 ```
 
+:::
+
 ---
 
-### 设置
+### 卸载
+
+::: code-group
+
+```shell [插件]
+asdf remove [插件名]
+```
+
+```shell [语言・运行时]
+asdf uninstall [语言・运行时] [版本]
+```
+
+:::
+
+---
+
+### 设置版本
 
 设置完成后需要执行[`asdf reshim`](#更新连接)更新环境变量，重新连接已安装的可执行文件
 
@@ -140,7 +180,7 @@ asdf list all [语言・运行时] [版本]
 
 :::
 
-> 如下：列出了 Node.js 18 版本所有能下载的子集版本
+::: details 例子：验证列出 Node.js 18 版本所有能下载的子集版本
 
 ```shell
 % asdf list all nodejs 18     # [!code focus]
@@ -151,6 +191,8 @@ asdf list all [语言・运行时] [版本]
 18.18.2
 18.19.0
 ```
+
+:::
 
 ---
 
@@ -168,7 +210,9 @@ asdf list
 
 :::
 
-> 如下：列出了已经下载的所有语言・运行时，`*`标记为当前使用的版本
+::: details 例子：验证列出已经下载的所有语言・运行时
+
+> `*`标记为当前使用的版本
 
 ```shell
 % asdf list     # [!code focus]
@@ -183,15 +227,19 @@ python
  *3.10.0
 ```
 
+:::
+
 ---
 
-### 查看当前
+### 查看当前版本
 
 ```shell
 asdf current
 ```
 
-> 如下：在全局环境下除了没有指定版本号的 Go 以外都显示了版本号以及记录信息的`.tool-versions`位置
+::: details 例子：验证查看当前环境下所有语言・运行时的版本
+
+> 如下：当前环境下除了 Go 以外都显示了版本号以及记录信息的`.tool-versions`位置
 
 ```shell
 % asdf current  # [!code focus]
@@ -200,3 +248,5 @@ nodejs          16.15.0         /Users/用户/.tool-versions
 python          3.10.0          /Users/用户/.tool-versions
 ruby            3.1.2           /Users/用户/.tool-versions
 ```
+
+:::

@@ -6,7 +6,24 @@ export const GIN_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
   {
     text: "Gin 基础",
     collapsed: false,
-    items: [],
+    items: [
+      {
+        text: "路由、请求",
+        link: `${GIN_ROOT}/base/route-request`,
+      },
+      {
+        text: "中间件",
+        link: `${GIN_ROOT}/base/middleware`,
+      },
+      {
+        text: "模版、静态资源",
+        link: `${GIN_ROOT}/base/template-static`,
+      },
+      {
+        text: "会话控制",
+        link: `${GIN_ROOT}/base/cookie-session`,
+      },
+    ],
   },
 
   {
@@ -14,12 +31,12 @@ export const GIN_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
     collapsed: true,
     items: [
       {
-        text: "Go 基础 →",
-        link: `/backend/go/`,
-      },
-      {
         text: "Gin 基础 →",
         link: `/backend/gin/`,
+      },
+      {
+        text: "Go 基础 →",
+        link: `/backend/go/`,
       },
       {
         text: "后端相关 →",

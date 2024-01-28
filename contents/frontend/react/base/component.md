@@ -46,6 +46,118 @@ function 组件(props: Props): JSX.Element {  // [!code focus]
 
 ### 传参
 
+```jsx{0}
+import React from "react";
+
+export default function 组件() {
+  const [组件状态] = useState(值);
+
+  return (
+    <标签
+      属性={值}
+      属性="字符串类型数据"
+      属性={函数}
+      {...键值对的对象数据}
+    />
+  );
+}
+```
+
+## 组件样式
+
+### 内联样式
+
+> Inline Style
+
+内联样式通过标签的`style`属性接收一个属性为小驼峰的 JS 对象
+
+是 CSS-in-JS 的实现
+
+::: tip
+
+- 优点：可避免样式冲突，扩展方便
+- 缺点：复杂结构的大项目中会导致代码可读性差，媒体查询、伪元素等功能无法使用
+
+:::
+
+```jsx
+import React from "react";
+
+export default function 组件() {
+  const [组件状态] = useState(值);
+
+  return (
+    <标签
+      style={{
+        属性: 固定值,
+        属性: 函数(参数),
+        属性: 组件状态,
+      }}
+    />
+  );
+}
+```
+
+> 常见 CSS-in-JS 的样式库：Styled Components、Emotion ( 以及 MUI )、JSS ...
+
+---
+
+### 外联样式表
+
+> Style Sheet
+
+引入单独的样式表并通过标签的`className`属性接收样式类名，可借助 [clsx](https://www.npmjs.com/package/clsx) 组织与切换类名
+
+文件多为`.css`、`.scss`、`.less`
+
+::: tip
+
+- 优点：实现样式与逻辑的分类
+- 缺点：会有全局与局部的样式冲突问题，复杂样式的大项目会导致样式文件可读性差
+
+:::
+
+```jsx
+import React from "react";
+import { clsx } from "clsx";
+
+import "样式表文件.后缀";
+import "样式表文件.后缀";
+
+export default function 组件() {
+  return (
+    <>
+      <标签 className="class类名 class类名" />
+      <标签 className={clsx("class类名", "class类名")} />
+    </>
+  );
+}
+```
+
+> 常见类名控制样式的库：TailwindCSS ...
+
+---
+
+### 样式模块化
+
+模块化的样式为局部样式，导入后仅对当前文件内的组件生效，不影响其子组件
+
+文件多为`.module.css`、`module.scss`、`.module.less`
+
+```jsx
+import React from "react";
+import 样式模块 from "样式表文件.module.后缀";
+
+export default function 组件() {
+  return (
+    <>
+      <标签 className={样式模块.class类名} />
+      <标签 className={样式模块.class类名} />
+    </>
+  );
+}
+```
+
 ## 组件复用
 
 ### 高阶组件 ( HOC )

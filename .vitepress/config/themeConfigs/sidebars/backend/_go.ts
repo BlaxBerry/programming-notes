@@ -9,22 +9,67 @@ export const GO_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
     items: [
       {
         text: "模块化开发",
-        collapsed: true,
+        collapsed: false,
         items: [
           {
             text: "包、模块、工作区",
-            collapsed: true,
             link: `${GO_ROOT}/base/modules-dev/pkg-module-workspace`,
           },
           {
             text: "包管理 ( Go Modules )",
-            collapsed: true,
             link: `${GO_ROOT}/base/modules-dev/go-modules`,
+          },
+
+          {
+            text: "常用内置包",
+            collapsed: true,
+            items: [
+              {
+                text: "fmt",
+                link: `${GO_ROOT}/base/built-in-pkgs/fmt`,
+              },
+              {
+                text: "os",
+                link: `${GO_ROOT}/base/built-in-pkgs/os`,
+              },
+              {
+                text: "io",
+                link: `${GO_ROOT}/base/built-in-pkgs/io`,
+              },
+              {
+                text: "reflect",
+                link: `${GO_ROOT}/base/built-in-pkgs/reflect`,
+              },
+              {
+                text: "strings",
+                link: `${GO_ROOT}/base/built-in-pkgs/strings`,
+              },
+              {
+                text: "time",
+                link: `${GO_ROOT}/base/built-in-pkgs/time`,
+              },
+              {
+                text: "testing",
+                link: `${GO_ROOT}/base/built-in-pkgs/testing`,
+              },
+              {
+                text: "encoding",
+                link: `${GO_ROOT}/base/built-in-pkgs/encoding`,
+              },
+              {
+                text: "net",
+                link: `${GO_ROOT}/base/built-in-pkgs/net`,
+              },
+              {
+                text: "runtime",
+                link: `${GO_ROOT}/base/built-in-pkgs/runtime`,
+              },
+            ],
           },
         ],
       },
       {
-        text: "指针",
+        text: "指针 ( Pointer )",
         link: `${GO_ROOT}/base/pointer`,
       },
       {
@@ -62,27 +107,54 @@ export const GO_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
         link: `${GO_ROOT}/base/function-method`,
       },
       {
-        text: "面向对象",
-        link: `${GO_ROOT}/base/oop`,
+        text: "异常处理",
+        link: `${GO_ROOT}/base/error-exception`,
       },
+
       {
-        text: "内置标准库",
-        collapsed: true,
+        text: "面向对象",
+        collapsed: false,
         items: [
           {
-            text: "fmt",
-            link: `${GO_ROOT}/base/built-in-pkgs/fmt`,
+            text: "结构体 ( Struct )",
+            link: `${GO_ROOT}/base/oop/struct`,
+          },
+          {
+            text: "接口 ( Interface )",
+            link: `${GO_ROOT}/base/oop/interface`,
+          },
+          {
+            text: "抽象、封装、继承、多态",
+            link: `${GO_ROOT}/base/oop/oop-properties`,
           },
         ],
       },
-      // {
-      //   text: "test 单元测试",
-      //   link: `${GO_ROOT}/`,
-      // },
-      // {
-      //   text: "ini 配置文件",
-      //   link: `${GO_ROOT}/`,
-      // },
+
+      {
+        text: "并发编程",
+        collapsed: false,
+        items: [
+          {
+            text: "协程 ( Goroutine )",
+            link: `${GO_ROOT}/base/concurrent-dev/goroutine`,
+          },
+          {
+            text: "通道 ( Channel )",
+            link: `${GO_ROOT}/base/concurrent-dev/channel`,
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    text: "Go 常用第三方包",
+    collapsed: true,
+    items: [
+      {
+        text: "gorm",
+        link: `${GO_ROOT}/third-party-pkgs/orm/gorm`,
+      },
     ],
   },
 
@@ -98,6 +170,10 @@ export const GO_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
         text: "Gin 基础 →",
         link: `/backend/gin/`,
       },
+      // {
+      //   text: "Iris 基础 →",
+      //   link: `/backend/iris/`,
+      // },
       {
         text: "后端相关 →",
         link: `/backend/`,

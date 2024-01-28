@@ -1,6 +1,6 @@
-# 包管理 ( Go Modules )
+# Go Modules
 
-Go 利用 [包、模块](./basics/pkg-module.md) 来组织管理代码
+Go 利用 [包、模块](./pkg-module.md) 来组织管理代码
 
 并采用 Go Modules 模式来管理包的依赖关系
 
@@ -127,7 +127,7 @@ Go 通过`go.mod`、`go.sum`文件来记录不同模块 ( 某个程序 ) 中依�
 ```go [go.mod]
 module 模块名
 
-go GO 的版本
+go 当前 Go 的版本
 
 require (
     依赖的包
@@ -159,7 +159,7 @@ module [仓库名]/[模块名]/[版本]
 :::code-group
 
 ```shell [模块目录]
-[模块]
+[模块目录]
 |- ...
 |- go.mod
 |- go.sum

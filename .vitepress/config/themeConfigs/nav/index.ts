@@ -14,12 +14,14 @@ export const defaultThemeNav: Array<DefaultTheme.NavItem> = [
     text: "常用语言",
     items: [
       {
+        text: "前端",
         items: [
           { text: "JavaScript", link: `${JS_ROOT}/` },
           { text: "TypeScript", link: `${TS_ROOT}/` },
         ],
       },
       {
+        text: "后端",
         items: [
           { text: "Python", link: `${PYTHON_ROOT}/` },
           { text: "Go", link: `${GO_ROOT}/` },
@@ -32,12 +34,14 @@ export const defaultThemeNav: Array<DefaultTheme.NavItem> = [
     text: "常用框架",
     items: [
       {
+        text: "前端",
         items: [
           { text: "React", link: `${REACT_ROOT}/` },
           { text: "Vue", link: `${VUE_ROOT}/` },
         ],
       },
       {
+        text: "后端",
         items: [
           { text: "Django", link: `${DJANGO_ROOT}/` },
           { text: "Gin", link: `${GIN_ROOT}/` },
@@ -45,13 +49,17 @@ export const defaultThemeNav: Array<DefaultTheme.NavItem> = [
       },
     ],
   },
-
   {
-    text: "常用工具",
+    text: "其他内容",
     items: [
-      { text: "Git", link: `${GIT_ROOT}/` },
-      { text: "ASDF", link: `/others/tools/asdf/` },
-      { text: "CURL", link: `/others/tools/curl/` },
+      {
+        text: "互联网基础",
+        link: `/others/web/`,
+      },
+      {
+        text: "常用工具",
+        link: `/others/tools/`,
+      },
     ],
   },
 ];

@@ -1,4 +1,4 @@
-# 基本数据类型
+# GO 基本数据类型
 
 基于数据的性质可分为：
 
@@ -25,7 +25,7 @@
 
 整数类型默认为`int`，会自动根据系统区分为 32 / 64 位
 
-整数类型的变量不赋值时自动赋值默认值`0`
+整数类型的变量不赋值时使用零值`0`
 
 ```go
 var 变量 int = 值
@@ -43,7 +43,7 @@ var 变量 int
 
 浮点类型默认为`float64`
 
-浮点类型的变量不赋值时自动赋值默认值`0`
+浮点类型的变量不赋值时使用零值`0`
 
 ```go
 var 变量 float64 = 值
@@ -56,7 +56,7 @@ var 变量 float64
 
 字节类型数据由单引号包裹的字符或范围为 0~255 的数值
 
-字节类型的变量不赋值时自动赋值默认值`0`
+字节类型的变量不赋值时使用零值`0`
 
 字节类型多用于处理二进制数据或与底层系统进行交互
 
@@ -198,7 +198,7 @@ func main() {
 
 字符串是字节的切片，每个字符为字节类型[`byte`](#字节类型-byte) ( 整数[`uint8`](#整数类型)类型 )
 
-字符串类型的变量不赋值时自动赋值默认值`""`
+字符串类型的变量不赋值时使用零值`""`
 
 ```go
 var 变量 string = "值"
@@ -262,6 +262,8 @@ func doSomething(str string, index int, value byte) string { // [!code focus]
 // "xzy"
 ```
 
+:::
+
 ---
 
 ### 拼接
@@ -272,7 +274,7 @@ func doSomething(str string, index int, value byte) string { // [!code focus]
 新字符串 := 字符串 + 字符串
 ```
 
-若想讲字符串与其他类型数据拼接可使用[`fmt.Sprint()`](../built-in-pkgs/fmt.md#fmt-sprint)
+若想将字符串与其他类型数据拼接可使用[`fmt.Sprint()`](../built-in-pkgs/fmt.md#fmt-sprint)
 
 ---
 
@@ -336,7 +338,7 @@ func main() {
 
 布尔型数据只有`true`、`false`
 
-布尔型的变量不赋值时自动赋值默认值`false`
+布尔型的变量不赋值时使用零值`false`
 
 ```go
 var 变量 bool = false

@@ -6,7 +6,12 @@ export const VUE_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
   {
     text: "Vue 基础",
     collapsed: false,
-    items: [],
+    items: [
+      {
+        text: "生命周期",
+        link: `${VUE_ROOT}/base/life-cycles`,
+      },
+    ],
   },
 
   {

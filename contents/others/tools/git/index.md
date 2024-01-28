@@ -9,10 +9,7 @@ next: false
 
 ## 下载安装
 
-::: code-group
-
-```shell [Homebrew]
+```shell
+# 通过 Homebrew 下载
 brew install git
 ```
-
-:::

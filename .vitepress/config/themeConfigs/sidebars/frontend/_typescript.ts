@@ -27,12 +27,12 @@ export const TS_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
     collapsed: true,
     items: [
       {
-        text: "JavaScript 基础 →",
-        link: `/frontend/javascript/`,
-      },
-      {
         text: "TypeScript 基础 →",
         link: `/frontend/typescript/`,
+      },
+      {
+        text: "JavaScript 基础 →",
+        link: `/frontend/javascript/`,
       },
       {
         text: "前端相关 →",

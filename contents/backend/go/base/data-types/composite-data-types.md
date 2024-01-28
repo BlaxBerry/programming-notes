@@ -1,4 +1,4 @@
-# 复合数据类型
+# GO 复合数据类型
 
 基于数据的性质可分为：
 
@@ -17,31 +17,57 @@ type 数组类型 = [元素个数]元素类型
 
 ---
 
+### 默认值
+
+数组类型的变量不赋值时其默认值取决于元素的数据类型的默认值
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var a [3]int		// [!code focus]
+	fmt.Println(a)
+
+	var b [3]float64	// [!code focus]
+	fmt.Println(b)
+
+	var c [3]string		// [!code focus]
+	fmt.Println(c)
+
+	var d [3]bool		// [!code focus]
+	fmt.Println(d)
+}
+
+
+// [0 0 0]					// [!code focus]
+// [0 0 0]					// [!code focus]
+// ["" "" ""]				// [!code focus]
+// [false false false]		// [!code focus]
+```
+
+---
+
 ### 字面量初始化
 
 创建数组类型的变量时元素的个数与类型必须与指明的长度与类型一致，否则报错
 
-数组类型的变量不赋值时自动创建指定个数的元素并赋值元素类型的默认值
-
 ```go
 type 数组类型 = [元素个数]元素类型
 
-var 变量 数组类型 = 数组类型{元素, 元素, 元素}
-var 变量 = 数组类型{元素, 元素, 元素}
+var 变量 = 数组类型{元素, 元素}	// [!code focus]
 
-// 短变量声明写法
-变量 := 数组类型{元素, 元素, 元素}
+// 短变量声明写法			   // [!code focus]
+变量 := 数组类型{元素, 元素}	// [!code focus]
 ```
 
 ::: details 例子：验证字面量初始化数组
 
 ```go
-var arr [2]int					// [0, 0]
-var arr [2]int = [2]int{10, 20}	// [10, 20]
-var arr = [2]int{10, 20}		// [10, 20]
+var arr = [2]string{"a", "b"}
 
-arr := [2]int{}					// [0, 0]
-arr := [2]int{10, 20}			// [10, 20]
+arr := [2]string{"a", "b"}
 ```
 
 :::
@@ -77,7 +103,7 @@ func main() {
 
 字面量初始化创建数组时还可指明索引对应元素的值
 
-使用此方法后其余没有指明索引所对应值的元素使用其数据类型的默认值
+使用此方法后其余没有指明索引所对应值的元素使用其数据类型的零值
 
 ```go
 数组 := [元素个数]元素类型 {索引: 值, 值, 索引: 值, 值}
@@ -305,29 +331,61 @@ type 切片类型 = []元素类型
 
 ---
 
-### 字面量初始化
+### 默认值、nil 切片
 
-切片类型的变量不赋值时默认值为空切片`[]`
+切片类型的变量不赋值时使用零值`nil`，即创建了一个`nil`切片
+
+```go
+var 变量 切片类型
+```
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var s []string				// [!code focus]
+	fmt.Println(s, s == nil)	// [!code focus]
+}
+
+
+// [] true						// [!code focus]
+```
+
+::: warning
+
+`nil`切片无法直接通过索引访问与修改元素，否则会报错
+
+:::
+
+---
+
+### 字面量初始化
 
 ```go
 type 切片类型 = []元素类型
 
-var 变量 切片类型 = 切片类型{元素, 元素, 元素}
-var 变量 = 切片类型{元素, 元素, 元素}
+var 变量 切片类型			// [!code focus] // nil 切片
+var 变量 = 切片类型{}		// [!code focus] // 空切片
+var 变量 = 切片类型{元素, 元素}// [!code focus]
 
-// 短变量声明写法
-变量 := 切片类型{元素, 元素, 元素}
+// 短变量声明写法		// [!code focus]
+变量 := 切片类型{}		// [!code focus] // 空切片
+变量 := 切片类型{元素, 元素}// [!code focus]
 ```
 
 ::: details 例子：验证字面量初始化切片
 
 ```go
-var slice []int						// []
-var slice []int = [2]int{10, 20}	// [10, 20]
-var slice = []int{10, 20}			// [10, 20]
+var slice []int
 
-slice := []int{10, 20}				// [10, 20]
-slice := []int{}					// []
+var slice = []int{}
+var slice = []int{10, 20}
+
+slice := []int{}
+slice := []int{10, 20}
+
 ```
 
 :::
@@ -336,20 +394,20 @@ slice := []int{}					// []
 
 ### make() 初始化
 
-可使用`make()`初始化一个切片
+也可使用`make()`方法初始化一个切片
 
-主要用于需要预先分配底层数组、指定底层数组长度 ( [容量](#容量) ) 的情况，若不需要考虑容量则直接使用字面量初始化即可
+主要用于需要预先分配底层数组、指定底层数组长度 ( [容量](#容量) ) 的情况
+
+- 指定了参数中元素个数时，会自动给元素赋值其数据类型的零值
+- 指定参数中元素个数为`0`则会创建一个空切片
 
 ```go
 切片 := make(切片类型, 元素个数, [容量])
 ```
 
-指定了元素个数后会自动给元素赋值其数据类型的默认值
-
-可指定长度为`0`来创建一个空切片
-
 ```go
 切片 := make(切片类型, 0)
+
 // 等价于
 切片 := 切片类型{}
 ```
@@ -381,6 +439,50 @@ func main() {
 
 :::
 
+::: details 例子：验证空切片与 nil 切片
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	// nil 切片				 // [!code focus]
+	var a []string			// [!code focus]
+	fmt.Println(a == nil)	// [!code focus]
+
+	// 空切片				 // [!code focus]
+	b := []string{}			// [!code focus]
+	c := make([]string, 0)	// [!code focus]
+	fmt.Println(b == nil, c == nil)	// [!code focus]
+}
+
+
+// true						// [!code focus]
+// false false				// [!code focus]
+```
+
+:::
+
+::: tip
+
+若硬要说明`make()`比字面量写法的优点
+
+1. 可明确指明长度与容量
+2. 元素可自动使用默认值
+   - `make()`可在创建切片时仅指明长度便可自动给每个元素赋值其类型的默认值
+   - 而字面量写法则必须手写所有元素的默认值
+
+```go
+a := make([]string, 3)
+fmt.Print(a[0], a[1], a[2])	// "" "" ""
+
+b := []string{"", "", ""}
+fmt.Print(a[0], a[1], a[2])	// "" "" ""
+```
+
+:::
+
 ---
 
 ### 长度、索引
@@ -397,17 +499,27 @@ len(切片)
 切片[索引]
 ```
 
+::: warning
+
+无法通过索引直接访问与修改`nil`切片的元素，否则报错
+
+若`nil`切片要进行元素操作只能给整体赋值，或干脆在创建时使用字面量或`make()`创建一个空切片
+
+:::
+
 ---
 
 ### 元素修改
 
-可通过索引直接修改元素值，但若访问的索引超过长度范围则报错
+可通过索引直接修改元素值
 
 切片是[引用类型数据](./division-determination-conversion.md#引用类型数据)，修改元素值会影响原本数据
 
 ```go
 切片[索引] = 新值
 ```
+
+但若访问的索引超过长度范围 ( 对应元素不存在 ) 则报错，比如长度为 0 的切片无法通过索引修改元素的值
 
 ---
 
@@ -743,16 +855,44 @@ type 映射类型 = map[键类型]值类型
 
 ---
 
+### 默认值、nil 映射
+
+映射类型的变量不赋值时使用零值`nil`，即创建了一个`nil`映射
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var m map[string]string		// [!code focus]
+	fmt.Println(m, m == nil)	// [!code focus]
+}
+
+
+// map[] true					// [!code focus]
+```
+
+::: warning
+
+`nil`映射无法直接通过 Hash 键访问与修改值，否则会报错
+
+:::
+
+---
+
 ### 字面量初始化
 
 ```go
 type 映射类型 = map[键类型]值类型
 
-var 变量 映射类型 = 映射类型{"键": 值, "键": 值}
-var 变量 = 映射类型{"键": 值, "键": 值}
+var 变量 映射类型						// [!code focus] // nil 映射
+var 变量 = 映射类型{}	 				// [!code focus] // 空映射
+var 变量 = 映射类型{"键": 值, "键": 值}	 // [!code focus]
 
-//  短变量声明写法
-变量 := 映射类型{"键": 值, "键": 值}
+// 短变量声明写法						// [!code focus]
+变量 := 映射类型{}						// [!code focus] // 空映射
+变量 := 映射类型{"键": 值, "键": 值}	 // [!code focus]
 ```
 
 ::: details 例子：验证字面量初始化映射
@@ -782,9 +922,9 @@ func main() {
 
 ### make() 初始化
 
-可使用`make()`初始化一个空映射
+也可使用`make()`方法初始化一个空映射
 
-也可可不考虑容量问题，根据映射中实际存储的键值对数量进行动态调整
+参数中的容量可省略，根据映射中实际存储的键值对数量进行动态调整
 
 ```go
 变量 := make(映射类型, [容量])
@@ -815,6 +955,29 @@ func main() {
 
 // map[]
 // map[a:1 b:1 c:1]
+```
+
+:::
+
+::: details 例子：验证空映射与 nil 映射
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	var a map[string]string			// [!code focus]
+	fmt.Println(a == nil)			// [!code focus]
+
+	b := map[string]string{}		// [!code focus]
+	c := make(map[string]string)	// [!code focus]
+	fmt.Println(b == nil, c == nil)	// [!code focus]
+}
+
+
+// true
+// false false
 ```
 
 :::
@@ -887,6 +1050,14 @@ func main() {
 
 :::
 
+::: warning
+
+无法通过 Hash 键直接访问与修改值`nil`映射的键值对，否则报错
+
+若`nil`映射要进行键值对操作只能给整体赋值，或干脆在创建时使用字面量或`make()`创建一个空映射
+
+:::
+
 ---
 
 ### 遍历
@@ -922,610 +1093,26 @@ func main() {
 
 :::
 
+## 指针类型
+
+> Pointer
+
+[更多详见](../pointer.md#指针类型)
+
 ## 结构体类型
 
 > Struct
 
-结构体是 Go 中[面向对象](../oop.md)的实现
-
-结构体是一种自定义类型，使用关键字`type`与`struct`创建
-
-```go
-type 结构体类型 struct {
-    字段 类型
-    字段 类型
-}
-```
-
-- 结构体利用字段实现多个不同类型数据的存储
-- 结构体也常用于 JSON 格式数据的存储
-
----
-
-### 字面量创建实例
-
-```go
-var 实例 结构体类型 = 结构体类型 {字段: 值, 字段: 值}
-var 实例 = 结构体类型 {字段: 值, 字段: 值}
-
-// 短变量声明写法
-实例 := 结构体类型 {字段: 值, 字段: 值}
-```
-
-也可创建空结构体实例然后手动追加字段
-
-没赋值的字段自动使用对应类型的默认值
-
-```go
-var 实例 结构体类型
-实例.字段 = 值
-
-// 短变量声明写法
-实例 := 结构体类型 {}
-实例.字段 = 值
-```
-
-::: details 例子：验证字面量创建结构体实例
-
-```go
-package main
-
-import "fmt"
-
-type person struct {		// [!code focus]
-	Name string				// [!code focus]
-	Age  int				// [!code focus]
-}							// [!code focus]
-
-func main() {
-	// 创建并初始化	     	  // [!code focus]
-	a := person{Name: "A"}	// [!code focus]
-	fmt.Println(a)
-
-	// 手动追加	   			 // [!code focus]
-	b := person{}			// [!code focus]
-	b.Name = "B"
-	fmt.Println(b)
-}
-
-
-// {A 0}
-// {B 0}
-```
-
-:::
-
----
-
-### new() 创建实例
-
-也可使用`new()`创建结构体实例对象的指针
-
-1. 先创建空结构体实例的指针
-
-```go
-var 实例的指针 *结构体类型 = new(结构体类型)
-
-// 短变量声明写法
-实例的指针 := new(结构体类型)
-```
-
-2. 然后给指针对应值追加字段
-
-```go
-*实例的指针.字段 = 值
-
-// 可简写为 ( Go 底层做了方便书写的转化，但实质上不变还是通过指针修改对应的值 )
-实例的指针.字段 = 值
-```
-
-::: details 例子：验证`new()`创建结构体实例
-
-```go
-package main
-
-import "fmt"
-
-type person struct {	// [!code focus]
-	Name string			// [!code focus]
-	Age  int			// [!code focus]
-}						// [!code focus]
-
-func main() {
-	p := new(person)	// [!code focus]
-	fmt.Println(*p)
-
-	(*p).Name = "xx"	// [!code focus]
-	fmt.Println(*p)
-
-	p.Age = 18			// [!code focus]
-	fmt.Println(*c)
-}
-
-
-// {"" 0}
-// {"C" 0}
-// {"C" 18}
-```
-
-:::
-
----
-
-### 匿名结构体
-
-可用于结构体类型不需要在外部单独定义的场合
-
-```go
-var 变量 struct {
-    字段 类型
-    字段 类型
-}
-
-var 变量 struct {
-    字段 类型
-    字段 类型
-} = {
-    字段 类型
-    字段 类型
-}
-```
-
----
-
-### 字段访问
-
-```go
-结构体类型数据.字段名
-```
-
-结构体类型中首字母大写的字段可在其他包中获取，首字母小写的字段则不能
-
-关于模块化开发 [更多详见](../modules-dev/pkg-module-workspace.md)
-
-::: details 例子：验证结构体的定义与成员访问
-
-> 如下：私有成员`accountBalance`、`personalSalary`无法被访问
-
-::: code-group
-
-```shell [目录]
-|- common
-    |- types.go
-    |- constants.go
-|- main.go
-```
-
-```go [common/type.go]
-package common
-
-type Person struct {
-	Name           string
-	Age            int
-	accountBalance int
-	personalSalary int
-}
-```
-
-```go [common/constants.go]
-package common
-
-var Andy = Person{
-	Name:           "Andy",
-	Age:            28,
-	accountBalance: 200000,
-	personalSalary: 5000,
-}
-```
-
-```go [main.go]
-package main
-
-import (
-	"demo/common"
-	"fmt"
-)
-
-func main() {
-	andy := common.Andy
-	fmt.Println(andy)
-	fmt.Println(andy.Age, andy.Name)
-	fmt.Println(andy.accountBalance, andy.personalSalary) // [!code error] // 私有属性报错 undefined
-}
-```
-
-:::
-
----
-
-### 字段修改
-
-- 在同一作用域中对结构体字段的直接修改会影响原始变量，因为共享相同的内存
-- 不同作用域中 ( 函数内 ) 对结构体字段的直接修改不影响原始变量，除非用[指针](../pointer.md)
-
-:::details 例子：验证不同作用域下对结构体的修改，以及对原本数据的影响
-
-::: code-group
-
-```go [同一作用域]
-package main
-
-import "fmt"
-
-type person struct {					// [!code focus]
-	Name string							// [!code focus]
-	Age  int   							// [!code focus]
-}										// [!code focus]
-
-func main() {
-	p := person{Name: "Andy", Age: 28}  // [!code focus]
-	fmt.Println(p)
-
-	// 同一作用域下可直接修改				// [!code focus]
-	p.Name = "Tom" 						// [!code focus]
-	p.Age = 16     						// [!code focus]
-	fmt.Println(p)
-}
-
-
-// {Andy 28}
-// {Tom 16}
-```
-
-```go [不同作用域]
-package main
-
-import "fmt"
-
-type person struct { 					// [!code focus]
-	Name string 						// [!code focus]
-	Age  int    						// [!code focus]
-} 										// [!code focus]
-
-func main() {
-	p := person{Name: "Andy", Age: 28} // [!code focus]
-	fmt.Println(p)
-
-	// 修改的只是传入的数据的副本，不影响原本数据	// [!code focus]
-	passValue(p) 						// [!code focus]
-	fmt.Println(p)
-
-	// 修改的只传入的数据的引用，会影响原本数据	// [!code focus]
-	passRef(&p) 						// [!code focus]
-	fmt.Println(p)
-}
-
-func passValue(p person) { 				// [!code focus]
-	p.Name = "Tom" 						// [!code focus]
-	p.Age = 16     						// [!code focus]
-}
-
-func passRef(p *person) { 				// [!code focus]
-	p.Name = "Jack" 					// [!code focus]
-	p.Age = 24     						// [!code focus]
-}
-
-
-// {Andy 28}
-// {Andy 28}
-// {Jack 24}
-```
-
-:::
-
----
-
-### 同字段结构体强转换
-
-字段完全一致的两个结构体类型数据不能相互赋值，但是强制类型转换后便可赋值
-
-```go
-type 结构体A struct {
-	字段 类型
-}
-type 结构体B struct {
-	字段 类型
-}
-
-结构体A的实例 := 结构体A {字段: 值}
-结构体B的实例 = 结构体B(结构体A的实例 )
-```
-
-::: details 例子：验证字段一致的结构体进行类型转换
-
-```go
-package main
-
-import "fmt"
-
-type person struct {			// [!code focus]
-	Name string					// [!code focus]
-}								// [!code focus]
-
-type student struct {			// [!code focus]
-	Name string					// [!code focus]
-}								// [!code focus]
-
-func main() {
-	p := person{Name: "xxx"}	// [!code focus]
-	s := student{Name: "yyy"}	// [!code focus]
-
-	p = s	// [!code error] // 报错
-	p = person(s)				// [!code focus]
-	s = person(p)				// [!code focus]
-	fmt.Println(p, s)
-}
-
-
-// {yyy} {yyy}
-```
-
-:::
-
----
-
-### 结构体方法
-
-结构体方法是关联到指定结构体类型上的方法，可通过实例调用
-
-结构体方法定义时需利用[方法接收者](../function-method.md#方法接收者)指明该方法要关联的结构体
-
-结构体方法的接收者即为调用该方法的结构体实例，因为实例是值类型数据无法在该结构体方法中直接修改实例的字段，所以若想在该放哪修改实例的值必需借助[指针](./pointer.md)
-
-```go
-type 结构体类型 struct {
-	字段 类型
-}
-
-// 值接收者的结构体方法
-func (接收者 结构体类型) 方法名([参数 参数类型]) [返回值] {
-	// ...
-}
-
-// 指针接收者的结构体方法
-func (接收者 *结构体类型) 方法名([参数 参数类型]) [返回值] {
-	(*接收者).字段 = 新值
-	// 可简写为 ( Go 底层做了方便书写的转化 )
-	接收者.字段 = 新值
-}
-```
-
-结构体方法通过结构体实例调用
-
-```go
-结构体实例 := 结构体类型{字段: 值}
-
-(&结构体实例).结构体方法([参数])
-// 可简写为 ( Go 底层做了方便书写的转化 )
-结构体实例.结构体方法([参数])
-```
-
-::: details 例子：验证值接收者的结构体方法
-
-```go
-package main
-
-import "fmt"
-
-type Person struct {							// [!code focus]
-	Name string									// [!code focus]
-}												// [!code focus]
-
-func (p Person) sayHello() {					// [!code focus]
-	fmt.Printf("%v say \"Hello\"\n", p.Name)	// [!code focus]
-}												// [!code focus]
-
-func (p Person) say(msg string) {				// [!code focus]
-	fmt.Println(msg)							// [!code focus]
-}												// [!code focus]
-
-func main() {
-	p := Person{Name: "xxx"}					// [!code focus]
-
-	p.sayHello()								// [!code focus]
-	p.say("哈哈哈")								 // [!code focus]
-
-}
-
-
-// "xxx say "Hello"""
-// "哈哈哈"
-```
-
-:::
-
-::: details 例子：验证值接收者与指针接收者的结构体方法修改实例的字段
-
-```go
-package main
-
-import "fmt"
-
-type Person struct {							// [!code focus]
-	Name string									// [!code focus]
-}												// [!code focus]
-
-// 值接收者的结构体方法								 // [!code focus]
-func (p Person) updateDirectly(v string) {		 // [!code focus]
-	p.Name = v									 // [!code focus]
-}												 // [!code focus]
-
-// 指针接收者的结构体方法							 // [!code focus]
-func (p *Person) updateByPointer(v string) {	 // [!code focus]
-	(*p).Name = v								 // [!code focus]
-}												 // [!code focus]
-
-func main() {
-	p := Person{Name: "xxx"}		 // [!code focus]
-	fmt.Println(p)
-
-	p.updateDirectly("yyy")			 // [!code focus]
-	fmt.Println(p)
-
-	(&p).updateByPointer("zzz")		 // [!code focus]
-	fmt.Println(p)
-	// 简写							  // [!code focus]
-	p.updateByPointer("ooo")		 // [!code focus]
-	fmt.Println(p)
-}
-
-
-// {xxx}
-// {xxx}
-// {zzz}
-// {ooo}
-```
-
-:::
-
-::: details 例子：利用结构体定义不同学生的实例，并调用结构体方法获取数据以及更新实例的值
-
-```go
-package main
-
-import "fmt"
-
-type Student struct {               // [!code focus]
-	Name  string                    // [!code focus]
-	Score float64                   // [!code focus]
-}                                   // [!code focus]
-
-func (s Student) GetInfo() string {                                     // [!code focus]
-	return fmt.Sprintf("Name:\t%s\nScore:\t%.2f\n", s.Name, s.Score)    // [!code focus]
-}                                                                       // [!code focus]
-
-func (s Student) UpdateScore(value float64) {   // [!code focus]
-	s.Score = value                             // [!code focus]
-}                                               // [!code focus]
-
-func main() {
-	andy := Student{Name: "Andy"}   // [!code focus]
-	tom := Student{Name: "Tom"}     // [!code focus]
-
-	andy.UpdateScore(96.6)          // [!code focus]
-	tom.UpdateScore(44.5)           // [!code focus]
-
-	fmt.Println(andy.GetInfo())     // [!code focus]
-	fmt.Println(tom.GetInfo())      // [!code focus]
-}
-
-
-// Name:   Andy
-// Score:  0.00
-
-// Name:   Tom
-// Score:  0.00
-```
-
-:::
-
----
-
-### JSON 格式
-
-借助内置包`encoding/json`中的方法实现结构体与 JSON 格式的转换：
-
-- 序列化 ( 结构体 → JSON )：`json.Marshal()`
-- 反序列化 ( JSON → 结构体 )：`json.Unmarshal()`
-
-::: code-group
-
-```go [序列化]
-type 结构体类型 struct {
-	公有字段 类型 `json:"JSON格式中使用的字段名",db:"数据库中使用的字段名",ini:"配置文件中使用的字段名"`
-}
-
-
-结构体数据 := 结构体{
-	字段: 值,
-}
-
-if 字节切片, 错误对象 := json.Marshal(结构体数据); 错误对象 != nil {
-	// ...
-} else {
-	json字符串 := string(字节切片)
-}
-```
-
-```go [反序列化]
-type 结构体 struct {
-	公有字段 类型 `json:"JSON格式中使用的字段名",db:"数据库中使用的字段名",ini:"配置文件中使用的字段名"`
-}
-
-
-结构体数据 := 结构体{}
-
-if 错误对象 := json.Unmarshal(字节切片, &结构体数据); 错误对象 != nil {
-	// ...
-}
-```
-
-:::
-
-::: tip
-
-- 因为是借助外部包来实现的，所以结构体中字段需要首字母大写，否则无法被外部包获取
-- 因为结构体是值类型数据，反序列化时传入函数的参数必须是指针，否则无法将处理结果赋值出来
-
-:::
-
-::: details 例子：验证结构体 → JSON 与 JSON → 结构体
-
-```go
-package main
-
-import (
-	"encoding/json"
-	"fmt"
-)
-
-type Person struct {				// [!code focus]
-	Name   string   `json:"name"`	// [!code focus]
-	Age    int      `json:"age"`	// [!code focus]
-	Skills []string `json:"skills"`	// [!code focus]
-}									// [!code focus]
-
-func main() {
-	// 序列化										 // [!code focus]
-	p := Person{									// [!code focus]
-		Name:   "Andy",								// [!code focus]
-		Age:    28,									// [!code focus]
-		Skills: []string{"JS", "TS"},				// [!code focus]
-	}												// [!code focus]
-	if bts, err := json.Marshal(p); err != nil {	// [!code focus]
-		fmt.Println(err)
-	} else {										// [!code focus]
-		fmt.Println(bts)
-		fmt.Println(string(bts))				    // [!code focus]
-	}												// [!code focus]
-
-	// 反序列化												      // [!code focus]
-	str := `{"name":"Tom","age":16,"skills":["Python","Go"]}`	// [!code focus]
-	btss := []byte(str)											// [!code focus]
-	s := Person{}												// [!code focus]
-	if err := json.Unmarshal(btss, &s); err != nil {			// [!code focus]
-		fmt.Println(err)
-	} else {
-		fmt.Println(s)
-	}															// [!code focus]
-}
-
-
-// [123 34 110 97 109 101 34 58 34 65 110 100 121 34 44 34 97 103 101 34 58 50 56 44 34 115 107 105 108 108 115 34 58 91 34 74 83 34 44 34 84 83 34 93 125]
-// {"name":"Andy","age":28,"skills":["JS","TS"]}
-// {Tom 16 [Python Go]}
-```
-
-:::
+[更多详见](../oop/struct.md)
 
 ## 接口类型
 
 > Interface
 
-```go
-type any = interface {}
-```
+[更多详见](../oop/interface.md)
 
 ## 通道类型
 
 > Channel
+
+[更多详见](../concurrent-dev/channel.md)
