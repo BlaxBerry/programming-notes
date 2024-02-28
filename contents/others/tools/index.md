@@ -17,11 +17,3 @@
 ## 命令行工具
 
 [cURL](./curl/index.md)
-
-## 配置文件
-
-[TOML](./config-file/index.md#toml)
-
-[YAML](./config-file/index.md#yaml)
-
-[INI](./config-file/index.md#ini)

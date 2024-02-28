@@ -1,7 +1,7 @@
 ---
 prev:
-  text: "运维相关"
-  link: "/devops/index.md"
+  text: "后端相关"
+  link: "/backend/index.md"
 next:
   text: "CI/CD 相关"
   link: "/ci-cd/index.md"

@@ -18,7 +18,6 @@ import json
 
 ```py
 JSON字符串 = json.dumps(列表或字典类型的数据)
-JSON字符串 = json.dumps(列表或字典类型的数据, indent=2) # 所有字段缩进两个空格进行格式化
 ```
 
 ::: details 例子：验证对字典、列表的序列化

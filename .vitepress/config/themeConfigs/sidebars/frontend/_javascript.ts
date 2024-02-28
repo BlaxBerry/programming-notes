@@ -12,6 +12,10 @@ export const JS_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
         collapsed: true,
         items: [
           {
+            text: "类型分类、判断、转换",
+            link: `${JS_ROOT}/base/data-types/division-determination-conversion`,
+          },
+          {
             text: "基本数据类型",
             link: `${JS_ROOT}/base/data-types/primitive-data-types`,
           },
@@ -20,6 +24,11 @@ export const JS_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
             link: `${JS_ROOT}/base/data-types/reference-data-type`,
           },
         ],
+      },
+
+      {
+        text: "函数",
+        link: `${JS_ROOT}/base/function`,
       },
 
       {

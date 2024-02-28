@@ -18,6 +18,18 @@ JavaScript 有两种运行环境：
 console.log(this === window ? "浏览器" : "Node.js");
 ```
 
+## 语言特点
+
+### 弱类型
+
+支持隐式转换
+
+```js
+const foo = 42;
+const bar = foo + "1";
+console.log(bar); // 421
+```
+
 ## 技巧
 
 ### 深拷贝

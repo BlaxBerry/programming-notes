@@ -1,6 +1,6 @@
 # Personal Programming Study Notes
 
-Personal Study Notes ( Markdown ) Blog Site Based on Vitepress.
+SSG Markdown Documents Site Based on Vitepress.
 
 ## Tech Stacks
 
@@ -11,18 +11,26 @@ Personal Study Notes ( Markdown ) Blog Site Based on Vitepress.
 
 ## Project Structure
 
-```shell
-|- .vitepress
-    |- dist
-    |- config   # vitepress's config
-    |- theme    # vitepress's theme style
-    |- ...
-|- contents     # pages ( markdown documents )
-    |- ...
-    |- index.md # home page
-|- public
-    |- statics
-    |- favicon.ico
-    |- ...
-|- ...
+```
+├─ .vitepress
+│    ├─ dist
+│    ├─ theme               # vitepress's style
+│    ├─ config              # vitepress's config
+│    │    ├─ siteHead       # site HTML's head
+│    │    └─ themeConfigs   # vitepress's default theme's configs
+│    │        ├─ nav        # default theme's top nav
+│    │        └─ sidebars   # default theme's sidebars
+│    └─ ...
+├─ contents                 # pages ( markdown documents )
+│    ├─ [leaf]
+│    │    ├─ [leaf]
+│    │    │    └─ [leaf].md
+│    │    └─ index.md
+│    ├─ ...
+│    └─ index.md
+├─ public
+│    ├─ statics
+│    ├─ favicon.ico
+│    └─ ...
+└─ ...
 ```

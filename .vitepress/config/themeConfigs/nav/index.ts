@@ -7,7 +7,7 @@ import { GO_ROOT } from "../sidebars/backend/_go";
 import { PYTHON_ROOT } from "../sidebars/backend/_python";
 import { DJANGO_ROOT } from "../sidebars/backend/_django";
 import { GIN_ROOT } from "../sidebars/backend/_gin";
-import { GIT_ROOT } from "../sidebars/others/tools/_git";
+// import { EXPRESSJS_ROOT } from "../sidebars/backend/_express-js";
 
 export const defaultThemeNav: Array<DefaultTheme.NavItem> = [
   {
@@ -43,6 +43,7 @@ export const defaultThemeNav: Array<DefaultTheme.NavItem> = [
       {
         text: "后端",
         items: [
+          // { text: "Express.js", link: `${EXPRESSJS_ROOT}/` },
           { text: "Django", link: `${DJANGO_ROOT}/` },
           { text: "Gin", link: `${GIN_ROOT}/` },
         ],
@@ -59,6 +60,10 @@ export const defaultThemeNav: Array<DefaultTheme.NavItem> = [
       {
         text: "常用工具",
         link: `/others/tools/`,
+      },
+      {
+        text: "数据格式与传输",
+        link: `/others/data-format/`,
       },
     ],
   },

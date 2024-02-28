@@ -46,6 +46,8 @@ function 组件(props: Props): JSX.Element {  // [!code focus]
 
 ### 传参
 
+- 简单传参直接通过组件的`props`参数即可
+
 ```jsx{0}
 import React from "react";
 
@@ -61,6 +63,33 @@ export default function 组件() {
     />
   );
 }
+```
+
+- 深层组件传参建议使用上下文 ( Context )
+
+详见[`createContext()`](./built-in-functions.md#createcontext)、[`useContext()`](./hooks/useContext.md)
+
+- 跨组件间传参建议使用 Reducer、第三方状态管理的库
+
+详见[`useReducer()`](./hooks/useReducer.md)
+
+---
+
+### 参数接收
+
+组件通过`props`参数接收父组件传入的数据
+
+在包含自定义属性时建议解构并使用剩余参数接受其他属性，否则会出现警告 React 无法识别 Props 上的自定义属性
+
+```tsx
+export default function 组件({
+  自定义属性,
+  自定义属性 = 默认值,
+  ...props
+}){
+  return ...
+}
+
 ```
 
 ## 组件样式

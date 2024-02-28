@@ -19,9 +19,15 @@ next:
 
 [Sass](/frontend/sass/)
 
+[JavaScript](/frontend/javascript/)
+
+[TypeScript](/frontend/typescript/)
+
 ---
 
 ### 常用库
+
+~~jQuery~~ <Badge type="warning" text="已过时" />
 
 [React](/frontend/react/)
 

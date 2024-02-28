@@ -33,24 +33,23 @@ export const PYTHON_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
             text: "复合数据类型",
             link: `${PYTHON_ROOT}/base/data-types/composite-data-types`,
           },
-        ],
-      },
-
-      {
-        text: "数据类型内置方法",
-        collapsed: true,
-        items: [
           {
-            text: "字符串",
-            link: `${PYTHON_ROOT}/base/built-in-apis/str`,
-          },
-          {
-            text: "列表",
-            link: `${PYTHON_ROOT}/base/built-in-apis/list`,
-          },
-          {
-            text: "字典",
-            link: `${PYTHON_ROOT}/base/built-in-apis/dict`,
+            text: "数据类型的常用内置方法",
+            collapsed: true,
+            items: [
+              {
+                text: "字符串",
+                link: `${PYTHON_ROOT}/base/built-in-apis/str`,
+              },
+              {
+                text: "列表",
+                link: `${PYTHON_ROOT}/base/built-in-apis/list`,
+              },
+              {
+                text: "字典",
+                link: `${PYTHON_ROOT}/base/built-in-apis/dict`,
+              },
+            ],
           },
         ],
       },
@@ -113,10 +112,10 @@ export const PYTHON_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
                 text: "pip",
                 link: `${PYTHON_ROOT}/pkg-management/pip`,
               },
-              // {
-              //   text: "PDM",
-              //   link: `${PYTHON_ROOT}/pkg-management/pdm`,
-              // },
+              {
+                text: "PDM",
+                link: `${PYTHON_ROOT}/pkg-management/pdm`,
+              },
             ],
           },
         ],
@@ -146,7 +145,7 @@ export const PYTHON_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
   //   items: [
   //     {
   //       text: "Scrapy",
-  //       link: `${PYTHON_ROOT}/scrapy/`,
+  //       link: `/backend/scrapy/`,
   //     },
   //   ],
   // },

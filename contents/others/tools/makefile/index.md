@@ -156,7 +156,7 @@ test:
 ```makefile
 变量 = 值               # [!code focus]
 变量 := 值              # [!code focus]
-变量 := ${其他变量} 值   # [!code focus]
+变量 := $(其他变量) 值   # [!code focus]
 
 
 [目标名]:

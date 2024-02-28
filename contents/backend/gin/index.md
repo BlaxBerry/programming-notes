@@ -47,7 +47,7 @@ func main() {
     // 定义路由规则、路由处理函数        // [!code focus]
     // ...                          // [!code focus]
 
-	// 启动服务器 ( 端口默认 8080 )    // [!code focus]
+	// 监听服务器端口 ( 默认 8080 )    // [!code focus]
 	err := Gin引擎.Run(":8000")      // [!code focus]
     if err != nil {
         // ...

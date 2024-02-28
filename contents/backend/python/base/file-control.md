@@ -117,7 +117,7 @@ except Exception as err:
 with open("路径", "访问模式") as file:
     # 写入
     file.write('文本内容\n')
-    file.write('文本内容\n')
+    file.write('文本内容\n', indent=2) # 缩进两个空格进行格式化
 
     # 多行写入
     lines = ['行1内容\n', '行2内容\n', '行3内容\n']
@@ -156,6 +156,8 @@ except Exception as err:
 :::
 
 ::: details 例子：验证写入 JSON 格式的文件
+
+JSON 格式数据在写入时所有字段缩进两个空格进行格式化
 
 ::: code-group
 

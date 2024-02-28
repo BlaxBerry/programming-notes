@@ -19,18 +19,18 @@ export const REACT_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
             text: "组件基础",
             link: `${REACT_ROOT}/base/component`,
           },
-          {
-            text: "内置组件",
-            link: `${REACT_ROOT}/base/built-in-components`,
-          },
-          {
-            text: "内置方法",
-            link: `${REACT_ROOT}/base/built-in-functions`,
-          },
         ],
       },
       {
-        text: "常用 Hooks",
+        text: "常用内置组件",
+        link: `${REACT_ROOT}/base/built-in-components`,
+      },
+      {
+        text: "常用内置方法",
+        link: `${REACT_ROOT}/base/built-in-functions`,
+      },
+      {
+        text: "常用内置 Hooks",
         collapsed: true,
         items: [
           {
@@ -38,16 +38,32 @@ export const REACT_SIDEBAR: Array<DefaultTheme.SidebarItem> = [
             link: `${REACT_ROOT}/base/hooks/useState`,
           },
           {
+            text: "useRef",
+            link: `${REACT_ROOT}/base/hooks/useRef`,
+          },
+          {
             text: "useEffect",
             link: `${REACT_ROOT}/base/hooks/useEffect`,
+          },
+          {
+            text: "useLayoutEffect",
+            link: `${REACT_ROOT}/base/hooks/useLayoutEffect`,
+          },
+          {
+            text: "useContext",
+            link: `${REACT_ROOT}/base/hooks/useContext`,
+          },
+          {
+            text: "useReducer",
+            link: `${REACT_ROOT}/base/hooks/useReducer`,
           },
           {
             text: "useMemo",
             link: `${REACT_ROOT}/base/hooks/useMemo`,
           },
           {
-            text: "useRef",
-            link: `${REACT_ROOT}/base/hooks/useRef`,
+            text: "useCallback",
+            link: `${REACT_ROOT}/base/hooks/useCallback`,
           },
           {
             text: " useImperativeHandle",

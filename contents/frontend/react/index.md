@@ -7,9 +7,11 @@ next: false
 
 ![](/static/skill-images/react.webp)
 
-> 本文为函数式组件 ( Functional Component )
+> 本文为 React v18+ 的函数式组件 ( Functional Component )
 
 React 严格来说是个处理页面 UI 的库而不是框架
+
+https://www.bilibili.com/video/BV13h4y177jW?p=27&vd_source=8960252a3845b76b699282b11f36ab5c
 
 ## 库特点
 

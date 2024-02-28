@@ -4,7 +4,7 @@
 
 会将当前组件内的状态与方法会定义到接收自父组件的 Ref 引用对象上，父组件通过事件获取操作该 Ref 引用对象上携带的成员，从而实现导出子组件的状态与方法供父组件使用
 
-需要与[`forwardRef()`](../built-in-functions.md#forwardref)、[`useRef()`](./useRef.md)一起使用
+该钩子函数需要与[`forwardRef()`](../built-in-functions.md#forwardref)、[`useRef()`](./useRef.md)一起使用
 
 ::: code-group
 
@@ -54,9 +54,8 @@ const 父组件: FC = () => {
 
 ::: tip
 
-Ref 引用对象中存储数据的变化不会影响组件渲染
-
-子组件导出的状态不能直接用于父组件内容的渲染
+- Ref 引用对象中存储数据的变化不会影响组件渲染
+- 子组件导出的状态不能直接用于父组件内容的渲染
 
 ```tsx
 function 父组件() {
